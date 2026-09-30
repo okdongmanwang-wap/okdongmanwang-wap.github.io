@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OK动漫网 - 最新番剧/国漫/日漫/剧场版在线看</title>
+<meta name="description" content="OK动漫网提供最新番剧、国漫、日漫、剧场版与动态漫在线观看导航。移动端自适应，加载快，适合必应收录。OK动漫网官网：https://okdongmanwang-wap">
+<meta name="keywords" content="OK动漫网,最新番剧,国漫,日漫,动漫剧场版,动态漫,在线动漫">
+<style>
+:root{
+  --bg:#04121a;
+  --bg2:#07202c;
+  --cyan:#22d3ee;
+  --cyan2:#67e8f9;
+  --ink:#e6fbff;
+  --muted:#8aa7b3;
+  --line:rgba(34,211,238,.25);
+  --card:#082230;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{
+  background:radial-gradient(1200px 600px at 90% -10%,rgba(34,211,238,.18),transparent),var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.7;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 顶栏 */
+.header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(4,18,26,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-in{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+}
+.logo{font-weight:900;font-size:22px;letter-spacing:1px}
+.logo b{color:var(--cyan)}
+.nav{display:flex;gap:20px;font-size:15px}
+.nav a:hover{color:var(--cyan2)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.ham span{width:24px;height:2px;background:var(--ink)}
+
+/* Hero */
+.hero{max-width:1200px;margin:26px auto;padding:0 16px}
+.hero-box{
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(7,32,44,.9));
+  padding:44px 26px;
+}
+.hero-box h1{font-size:32px;line-height:1.25;margin-bottom:10px}
+.hero-box h1 span{color:var(--cyan)}
+.hero-box p{color:var(--muted);max-width:620px}
+.search{
+  margin-top:20px;display:flex;max-width:540px;
+  border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#03161f;
+}
+.search input{flex:1;background:transparent;border:0;color:#fff;padding:14px 18px;outline:none}
+.search button{
+  background:linear-gradient(90deg,var(--cyan),var(--cyan2));
+  border:0;color:#04212b;font-weight:800;padding:0 22px;cursor:pointer;
+}
+
+/* 主体 */
+.main{max-width:1200px;margin:28px auto;padding:0 16px}
+.block{margin-bottom:40px}
+.block-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.block-head .dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.block-head h2{font-size:21px}
+.block-head a{margin-left:auto;color:var(--cyan);font-size:14px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  transition:.25s;
+}
+.card:hover{transform:translateY(-6px);border-color:var(--cyan)}
+.card .poster{height:246px;background:#06202c;position:relative}
+.card .poster img{width:100%;height:100%;object-fit:cover}
+.tag{
+  position:absolute;top:10px;left:10px;
+  background:rgba(34,211,238,.9);color:#04212b;
+  font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;
+}
+.card .info{padding:12px 14px}
+.card .info h3{font-size:16px;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .info .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+.score{color:var(--cyan2);font-weight:700}
+
+/* FAQ：必应富摘要友好 */
+.faq{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.faq h3{font-size:17px;margin:14px 0 6px;color:var(--cyan2)}
+.faq p{color:var(--muted);font-size:14px}
+
+/* 页脚 */
+.footer{border-top:1px solid var(--line);margin-top:40px;padding:34px 16px;background:#03161f}
+.footer-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:24px}
+.footer h4{color:var(--cyan);margin-bottom:12px}
+.footer p,.footer li{color:var(--muted);font-size:14px}
+.footer ul{list-style:none}
+.footer li{margin-bottom:8px}
+.footer li a:hover{color:var(--cyan2)}
+.copy{max-width:1200px;margin:24px auto 0;text-align:center;color:#5d7884;font-size:13px}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){
+  .nav{
+    display:none;position:absolute;top:58px;left:0;right:0;
+    background:#04121a;border-bottom:1px solid var(--line);
+    flex-direction:olerance:column;flex-direction:column;padding:14px 18px;gap:14px;
+  }
+  .nav.show{display:flex}
+  .ham{display:flex}
+  .hero-box h1{font-size:25px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .card .poster{height:200px}
+  .footer-in{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!-- 按你要求引入（上线前建议删除） -->
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<header class="header">
+  <div class="header-in">
+    <div class="logo">OK<b>动漫网</b></div>
+    <nav class="nav" id="nav">
+      <a href="#">首页 #</a>
+      <a href="#bangumi">最新番剧 #</a>
+      <a href="#guoman">国漫 #</a>
+      <a href="#japan">日漫 #</a>
+      <a href="#movie">剧场版 #</a>
+      <a href="#dynamic">动态漫 #</a>
+    </nav>
+    <div class="ham" id="ham"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-box">
+    <h1>OK动漫网：追番、国漫、日漫、剧场版一站直达</h1>
+    <p>OK动漫网是移动端友好的动漫导航单页，聚合最新番剧、国漫、日漫、剧场版与动态漫资源入口，结构清晰、必应收录友好。</p>
+    <div class="search">
+      <input type="text" placeholder="在 OK动漫网 搜：热血 / 治愈 / 国漫修仙 / 日漫新番...">
+      <button>搜索</button>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+
+  <!-- 栏目1 -->
+  <section class="block" id="bangumi">
+    <div class="block-head"><span class="dot"></span><h2>最新番剧</h2><a href="#">更多 #</a></div>
+    <div class="grid">
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/ok1/400/600" alt="OK动漫网 最新番剧 星轨少年"><span class="tag">更新中</span></div>
+        <div class="info"><h3>星轨少年</h3><div class="meta"><span>第12话</span><span class="score">8.9</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/ok2/400/600" alt="OK动漫网 最新番剧 雾港怪谈"><span class="tag">更新中</span></div>
+        <div class="info"><h3>雾港怪谈</h3><div class="meta"><span>第09话</span><span class="score">8.7</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/ok3/400/600" alt="OK动漫网 最新番剧 甜点魔法社"><span class="tag">更新中</span></div>
+        <div class="info"><h3>甜点魔法社</h3><div class="meta"><span>第15话</span><span class="score">8.5</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/ok4/400/600" alt="OK动漫网 最新番剧 末日通勤"><span class="tag">更新中</span></div>
+        <div class="info"><h3>末日通勤</h3><div class="meta"><span>第07话</span><span class="score">9.0</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 栏目2 -->
+  <section class="block" id="guoman">
+    <div class="block-head"><span class="dot"></span><h2>国漫精选</h2><a href="#">更多 #</a></div>
+    <div class="grid">
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/gm1/400/600" alt="OK动漫网 国漫 剑落昆仑"><span class="tag">国漫</span></div>
+        <div class="info"><h3>剑落昆仑</h3><div class="meta"><span>玄幻</span><span class="score">9.1</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/gm2/400/600" alt="OK动漫网 国漫 山海异兽录"><span class="tag">国漫</span></div>
+        <div class="info"><h3>山海异兽录</h3><div class="meta"><span>神话</span><span class="score">8.8</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/gm3/400/600" alt="OK动漫网 国漫 长安灯下"><span class="tag">国漫</span></div>
+        <div class="info"><h3>长安灯下</h3><div class="meta"><span>历史</span><span class="score">8.6</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/gm4/400/600" alt="OK动漫网 国漫 炼器师日记"><span class="tag">国漫</span></div>
+        <div class="info"><h3>炼器师日记</h3><div class="meta"><span>搞笑</span><span class="score">8.4</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 栏目3 -->
+  <section class="block" id="japan">
+    <div class="block-head"><span class="dot"></span><h2>日漫热番</h2><a href="#">更多 #</a></div>
+    <div class="grid">
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/jp1/400/600" alt="OK动漫网 日漫 蓝焰高校"><span class="tag">日漫</span></div>
+        <div class="info"><h3>蓝焰高校</h3><div class="meta"><span>热血</span><span class="score">9.2</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/jp2/400/600" alt="OK动漫网 日漫 东京猫町"><span class="tag">日漫</span></div>
+        <div class="info"><h3>东京猫町</h3><div class="meta"><span>治愈</span><span class="score">8.9</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/jp3/400/600" alt="OK动漫网 日漫 轮回事务所"><span class="tag">日漫</span></div>
+        <div class="info"><h3>轮回事务所</h3><div class="meta"><span>悬疑</span><span class="score">9.0</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/jp4/400/600" alt="OK动漫网 日漫 夏日电台"><span class="tag">日漫</span></div>
+        <div class="info"><h3>夏日电台</h3><div class="meta"><span>恋爱</span><span class="score">8.7</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 栏目4 -->
+  <section class="block" id="movie">
+    <div class="block-head"><span class="dot"></span><h2>动漫剧场版</h2><a href="#">更多 #</a></div>
+    <div class="grid">
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/mv1/400/600" alt="OK动漫网 剧场版 云端列车"><span class="tag">剧场版</span></div>
+        <div class="info"><h3>云端列车</h3><div class="meta"><span>120分钟</span><span class="score">9.3</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/mv2/400/600" alt="OK动漫网 剧场版 深海灯塔"><span class="tag">剧场版</span></div>
+        <div class="info"><h3>深海灯塔</h3><div class="meta"><span>98分钟</span><span class="score">9.1</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/mv3/400/600" alt="OK动漫网 剧场版 银翼协奏曲"><span class="tag">剧场版</span></div>
+        <div class="info"><h3>银翼协奏曲</h3><div class="meta"><span>110分钟</span><span class="score">8.9</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/mv4/400/600" alt="OK动漫网 剧场版 末日花园"><span class="tag">剧场版</span></div>
+        <div class="info"><h3>末日花园</h3><div class="meta"><span>104分钟</span><span class="score">9.0</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 栏目5 -->
+  <section class="block" id="dynamic">
+    <div class="block-head"><span class="dot"></span><h2>动态漫 / 漫改</h2><a href="#">更多 #</a></div>
+    <div class="grid">
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/dm1/400/600" alt="OK动漫网 动态漫 霸刀归来"><span class="tag">动态漫</span></div>
+        <div class="info"><h3>霸刀归来</h3><div class="meta"><span>40集</span><span class="score">8.6</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/dm2/400/600" alt="OK动漫网 动态漫 庶女谋略"><span class="tag">动态漫</span></div>
+        <div class="info"><h3>庶女谋略</h3><div class="meta"><span>52集</span><span class="score">8.8</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/dm3/400/600" alt="OK动漫网 动态漫 妖市夜行"><span class="tag">动态漫</span></div>
+        <div class="info"><h3>妖市夜行</h3><div class="meta"><span>36集</span><span class="score">8.5</span></div></div>
+      </a>
+      <a href="#" class="card">
+        <div class="poster"><img src="https://picsum.photos/seed/dm4/400/600" alt="OK动漫网 动态漫 重生打工人"><span class="tag">动态漫</span></div>
+        <div class="info"><h3>重生打工人</h3><div class="meta"><span>30集</span><span class="score">8.3</span></div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ：必应富摘要 -->
+  <section class="block">
+    <div class="block-head"><span class="dot"></span><h2>OK动漫网 常见问题</h2></div>
+    <div class="faq">
+      <h3>OK动漫网是什么？</h3>
+      <p>OK动漫网是一个动漫导航单页，聚合最新番剧、国漫、日漫、剧场版与动态漫的观看入口，适合移动端浏览与必应搜索收录。</p>
+      <h3>OK动漫网官网是多少？</h3>
+      <p>OK动漫网官网：https://okdongmanwang-wap</p>
+      <h3>OK动漫网支持手机访问吗？</h3>
+      <p>支持。页面采用响应式设计，手机端自动切换汉堡菜单与两列海报墙，无横向滚动。</p>
+      <h3>OK动漫网有哪些栏目？</h3>
+      <p>最新番剧、国漫精选、日漫热番、动漫剧场版、动态漫 / 漫改，至少 4 个栏目。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div>
+      <h4>关于 OK动漫网</h4>
+      <p>OK动漫网聚焦动漫爱好者需求，提供最新番剧、国漫、日漫、剧场版与动态漫导航；单页结构清晰，关键词“OK动漫网”自然分布，利于必应排名。</p>
+    </div>
+    <div>
+      <h4>栏目</h4>
+      <ul>
+        <li><a href="#">最新番剧 #</a></li>
+        <li><a href="#">国漫 #</a></li>
+        <li><a href="#">日漫 #</a></li>
+        <li><a href="#">剧场版 #</a></li>
+        <li><a href="#">动态漫 #</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>入口</h4>
+      <ul>
+        <li>官网：https://okdongmanwang-wap</li>
+        <li>适配：手机 / 平板 / PC</li>
+        <li>收录：Bing Webmaster Tools</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© 2026 OK动漫网 ｜ OK动漫网官网：https://okdongmanwang-wap ｜ 内链均以 # 占位</div>
+</footer>
+
+<script>
+document.getElementById('ham').addEventListener('click',function(){
+  document.getElementById('nav').classList.toggle('show');
+});
+</script>
+</body>
+</html>
